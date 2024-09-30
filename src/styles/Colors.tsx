@@ -1,7 +1,7 @@
 const Colors = {
   PRIMARY_BLACK: "#404145",
   PRIMARY_WHITE: "#FFFFFF",
-  PRIMARY_RED: "#FF0000",
+  PRIMARY_RED: "#800000",
 
   GRAY_100: "#F6F6F6",
   GRAY_200: "#E4E4E4",
@@ -12,7 +12,7 @@ const Colors = {
   GRAY_700: "#57595B",
   GRAY_800: "#28292A",
 
-  SUB_1: "#FDB336",
+  SUB_1: "#ffbe00",
   SUB_2: "#1C6D78",
 
   BG_DARK: "rgba(25, 25, 25, 0.60)",
