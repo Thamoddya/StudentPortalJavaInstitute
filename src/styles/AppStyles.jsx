@@ -4,7 +4,7 @@ import Colors from "./Colors";
 export const ScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.PRIMARY_BLACK,
+    backgroundColor: Colors.PRIMARY_WHITE,
   },
   subContainer: {
     padding: 16,

@@ -1,6 +1,6 @@
-import { Edit } from "iconsax-react-native";
 import React from "react";
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import UserCard from "../../components/cards/UserCard";
+import LectureCard from "../../components/cards/LectureCard";
 import { ScreenStyles, TextStyles } from "../../styles/AppStyles";
 import Colors from "../../styles/Colors";
 
@@ -16,57 +16,50 @@ interface HomeScreenProps {
   navigation: any;
 }
 
-const testUsers = [
-  {
-    profileImage: "https://xsgames.co/randomusers/assets/avatars/male/34.jpg",
-    firstName: "Thamoddya",
-    lastName: "Rashmitha Dissanayake",
-    isOnline: true,
-    lastSeen: "Online",
-    lastMessage:
-      "Hello there ! How are you ? Hello there ! How are you ? Hello there ! How are you ? ",
-  },
-  {
-    profileImage: "https://xsgames.co/randomusers/assets/avatars/male/35.jpg",
-    firstName: "Jane",
-    lastName: "Doe",
-    isOnline: false,
-    lastSeen: "1 hour ago",
-    lastMessage: "Hi",
-  },
-];
-
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   // MARK: - Component
   const HeaderView: React.FC = () => {
     return (
       <View style={[styles.headerView]}>
         <TouchableOpacity>
-          <Text style={[styles.headerText]}>Edit</Text>
+          <Image
+            source={require("../../../assets/images/login-invert.png")}
+            style={[
+              {
+                resizeMode: "contain",
+                width: 120,
+                height: 55,
+              },
+            ]}
+          />
         </TouchableOpacity>
-        <Text style={[styles.middleText]}>Messages</Text>
         <TouchableOpacity>
-          <Edit size={24} color={Colors.SUB_1} />
+          <Image
+            style={[styles.profileImage]}
+            source={require("../../../assets/images/myImg.jpg")}
+          />
         </TouchableOpacity>
       </View>
     );
   };
 
-  const MessageView: React.FC = () => {
+  const UserCard: React.FC = () => {
     return (
       <View style={[styles.userCardsView]}>
-        {testUsers?.map((user, index) => (
-          <UserCard
-            firstName={user.firstName}
-            isOnline={user.isOnline}
-            key={index}
-            lastMessage={user.lastMessage}
-            lastSeen={user.lastSeen}
-            lastName={user.lastName}
-            profileImage={user.profileImage}
-            navigation={navigation}
-          />
-        ))}
+        <Text style={[styles.middleText]}>Thamoddya Rashmitha</Text>
+        <Text style={[styles.subtextTwo]}>2023/2024/KA/SE/Intake10</Text>
+        <Text style={[styles.subText]}>Moose Kandy</Text>
+      </View>
+    );
+  };
+
+  const TodayLectures: React.FC = () => {
+    return (
+      <View style={[styles.lecturesView]}>
+        <Text style={[styles.titleText]}>Today's Lectures</Text>
+        {/* <Text style={[styles.subText]}>No Lectures</Text> */}
+        <LectureCard />
+        <LectureCard />
       </View>
     );
   };
@@ -75,8 +68,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   return (
     <SafeAreaView style={[ScreenStyles.container]}>
       <HeaderView />
-      <ScrollView contentContainerStyle={[styles.messagesContainer]}>
-        <MessageView />
+      <ScrollView contentContainerStyle={[styles.mainContainer]}>
+        <UserCard />
+        <TodayLectures />
       </ScrollView>
     </SafeAreaView>
   );
@@ -88,25 +82,56 @@ const styles = StyleSheet.create({
   headerView: {
     borderBottomWidth: 0.5,
     borderBottomColor: "gray",
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   headerText: {
     ...TextStyles.H6,
     color: Colors.SUB_1,
   },
   middleText: {
-    ...TextStyles.H3,
-    color: Colors.PRIMARY_WHITE,
+    ...TextStyles.H1,
+    color: Colors.PRIMARY_BLACK,
+    fontWeight: "bold",
+    fontSize: 28,
   },
-  messagesContainer: {
-    backgroundColor: "#000",
+  subText: {
+    ...TextStyles.H4,
+    color: Colors.SUB_1,
+  },
+  subtextTwo: {
+    ...TextStyles.H5,
+    color: Colors.GRAY_700,
+  },
+  titleText: {
+    ...TextStyles.H2,
+    color: Colors.PRIMARY_BLACK,
+    fontWeight: "bold",
+  },
+  mainContainer: {
+    backgroundColor: Colors.PRIMARY_WHITE,
     padding: 16,
     flexGrow: 1,
   },
   userCardsView: {
     width: "100%",
     flexDirection: "column",
+  },
+  profileImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    marginLeft: "auto",
+    borderColor: Colors.SUB_1,
+    borderWidth: 2,
+    resizeMode: "cover",
+  },
+  lecturesView: {
+    width: "100%",
+    flexDirection: "column",
+    marginTop: 20,
   },
 });

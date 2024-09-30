@@ -24,7 +24,7 @@ const ScreenOptions: NativeStackNavigationOptions = {
   headerBackVisible: false,
   headerTitle: "",
   headerTintColor: Colors.PRIMARY_WHITE,
-  headerStyle: { backgroundColor: Colors.PRIMARY_BLACK },
+  headerStyle: { backgroundColor: Colors.PRIMARY_WHITE },
   headerShadowVisible: false,
   statusBarColor: Colors.PRIMARY_WHITE,
 };
