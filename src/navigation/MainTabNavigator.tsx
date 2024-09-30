@@ -35,12 +35,12 @@ const MainTabNavigator = () => {
   return (
     <Tab.Navigator
       barStyle={{
-        backgroundColor: Colors.PRIMARY_BLACK,
+        backgroundColor: Colors.PRIMARY_WHITE,
         borderTopWidth: 0.5,
         elevation: 0,
         borderTopColor: Colors.GRAY_500,
       }}
-      activeColor={Colors.PRIMARY_WHITE}
+      activeColor={Colors.PRIMARY_BLACK}
       inactiveColor={Colors.GRAY_500}
       backBehavior="firstRoute"
       initialRouteName="Home"
@@ -52,7 +52,7 @@ const MainTabNavigator = () => {
         tabBarColor: Colors.PRIMARY_BLACK,
       }}
       activeIndicatorStyle={{
-        backgroundColor: Colors.PRIMARY_WHITE,
+        backgroundColor: Colors.PRIMARY_BLACK,
         height: 0,
       }}
       compact={true}
