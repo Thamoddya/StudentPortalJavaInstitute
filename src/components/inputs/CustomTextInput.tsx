@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Platform,
   StyleSheet,
@@ -6,24 +6,24 @@ import {
   TextInput,
   TextInputProps,
   View,
-} from 'react-native';
-import Colors from '../../styles/Colors';
+} from "react-native";
+import Colors from "../../styles/Colors";
 
 interface CustomTextInputProps {
   label: string;
   placeholder?: string;
   value: string;
   onChangeText: (text: string) => void;
-  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
+  keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
   CustomProps?: TextInputProps;
 }
 
 const CustomTextInput: React.FC<CustomTextInputProps> = ({
   label,
-  placeholder = '',
+  placeholder = "",
   value,
   onChangeText,
-  keyboardType = 'default',
+  keyboardType = "default",
   CustomProps,
 }) => {
   return (
@@ -49,25 +49,25 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   label: {
-    position: 'absolute',
-    top: Platform.OS === 'android' ? -10 : -8,
+    position: "absolute",
+    top: Platform.OS === "android" ? -10 : -8,
     left: 12,
-    backgroundColor: Colors.PRIMARY_BLACK,
+    backgroundColor: Colors.PRIMARY_WHITE,
     paddingHorizontal: 4,
     fontSize: 14,
-    color: Colors.PRIMARY_WHITE,
+    color: Colors.PRIMARY_BLACK,
     zIndex: 1, // Ensure label is above the TextInput
   },
   input: {
     height: 55,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 12,
     fontSize: 16,
-    paddingTop: Platform.OS === 'android' ? 12 : 14,
-    paddingBottom: Platform.OS === 'android' ? 12 : 10,
-    color: Colors.PRIMARY_WHITE,
+    paddingTop: Platform.OS === "android" ? 12 : 14,
+    paddingBottom: Platform.OS === "android" ? 12 : 10,
+    color: Colors.PRIMARY_BLACK,
     flexGrow: 1,
   },
 });

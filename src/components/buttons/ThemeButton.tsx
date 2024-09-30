@@ -1,24 +1,24 @@
-import React from 'react';
+import React from "react";
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
-} from 'react-native';
-import Colors from '../../styles/Colors';
+} from "react-native";
+import Colors from "../../styles/Colors";
 
 interface ThemedButtonProps extends TouchableOpacityProps {
   title: string;
-  theme?: 'light' | 'dark';
+  theme?: "light" | "dark";
 }
 
 const ThemedButton: React.FC<ThemedButtonProps> = ({
   title,
-  theme = 'dark',
+  theme = "dark",
   style,
   ...props
 }) => {
-  const isDarkTheme = theme === 'dark';
+  const isDarkTheme = theme === "dark";
 
   return (
     <TouchableOpacity
@@ -27,12 +27,14 @@ const ThemedButton: React.FC<ThemedButtonProps> = ({
         isDarkTheme ? styles.darkButton : styles.lightButton,
         style,
       ]}
-      {...props}>
+      {...props}
+    >
       <Text
         style={[
           styles.buttonText,
           isDarkTheme ? styles.darkButtonText : styles.lightButtonText,
-        ]}>
+        ]}
+      >
         {title}
       </Text>
     </TouchableOpacity>
@@ -43,20 +45,20 @@ const styles = StyleSheet.create({
   button: {
     padding: 15,
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 20,
-    width: '100%',
+    width: "100%",
   },
   darkButton: {
-    backgroundColor: Colors.SUB_2,
+    backgroundColor: Colors.SUB_1,
   },
   lightButton: {
     backgroundColor: Colors.PRIMARY_WHITE,
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   darkButtonText: {
     color: Colors.PRIMARY_WHITE,

@@ -34,10 +34,10 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
       });
 
       const timeout = setTimeout(() => {
-        // navigation.reset({
-        //   index: 0,
-        //   routes: [{ name: "SignIn" }],
-        // });
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "SignIn" }],
+        });
         console.log("SplashScreen");
       }, 3000);
 

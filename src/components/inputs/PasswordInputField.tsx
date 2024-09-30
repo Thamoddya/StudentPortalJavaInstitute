@@ -1,5 +1,5 @@
-import {Eye, EyeSlash} from 'iconsax-react-native';
-import {FC, useState} from 'react';
+import { Eye, EyeSlash } from "iconsax-react-native";
+import { FC, useState } from "react";
 import {
   Platform,
   StyleSheet,
@@ -8,8 +8,8 @@ import {
   TextInputProps,
   TouchableOpacity,
   View,
-} from 'react-native';
-import Colors from '../../styles/Colors';
+} from "react-native";
+import Colors from "../../styles/Colors";
 
 interface PasswordInputFieldProps {
   placeholder: string;
@@ -40,7 +40,7 @@ const PasswordInputField: FC<PasswordInputFieldProps> = ({
         <Text style={styles.label}>{label}</Text>
         <TextInput
           onKeyPress={onKeyUp}
-          style={[styles.textInputStyle, {paddingRight: 38}]}
+          style={[styles.textInputStyle, { paddingRight: 38 }]}
           placeholder={placeholder}
           placeholderTextColor="#888"
           onChangeText={onChangeText}
@@ -51,7 +51,8 @@ const PasswordInputField: FC<PasswordInputFieldProps> = ({
         />
         <TouchableOpacity
           onPress={togglePasswordVisibility}
-          style={styles.iconButton}>
+          style={styles.iconButton}
+        >
           {isPasswordSecure ? (
             <EyeSlash size={20} color={Colors.GRAY_600} />
           ) : (
@@ -65,10 +66,10 @@ const PasswordInputField: FC<PasswordInputFieldProps> = ({
 
 const styles = StyleSheet.create({
   textInputWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: '#ccc',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 8,
     marginVertical: 8,
@@ -76,22 +77,22 @@ const styles = StyleSheet.create({
   textInputStyle: {
     padding: 16,
     borderRadius: 8,
-    color: Colors.PRIMARY_WHITE,
+    color: Colors.PRIMARY_BLACK,
     flexGrow: 1,
   },
   iconButton: {
     padding: 16,
-    position: 'absolute',
+    position: "absolute",
     right: 0,
   },
   label: {
-    position: 'absolute',
-    top: Platform.OS === 'android' ? -10 : -8,
+    position: "absolute",
+    top: Platform.OS === "android" ? -10 : -8,
     left: 12,
-    backgroundColor: Colors.PRIMARY_BLACK,
+    backgroundColor: Colors.PRIMARY_WHITE,
     paddingHorizontal: 4,
     fontSize: 14,
-    color: Colors.PRIMARY_WHITE,
+    color: Colors.PRIMARY_BLACK,
     zIndex: 1, // Ensure label is above the TextInput
   },
 });

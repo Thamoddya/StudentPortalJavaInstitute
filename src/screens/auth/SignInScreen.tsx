@@ -1,6 +1,7 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import {
+  Image,
   ImageBackground,
   Platform,
   StatusBar,
@@ -49,9 +50,13 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       style={styles.image}
     >
       <KeyboardAwareScrollView contentContainerStyle={[styles.safeView]}>
-        <Text style={[styles.MainText]}>Welcome Back</Text>
+        <Image
+          source={require("../../../assets/images/ic_launcher-playstore.png")}
+          style={{ width: 100, height: 100, alignSelf: "center" }}
+        />
+        <Text style={[styles.MainText]}>Student Portal Login</Text>
         <Text style={[styles.subText]}>
-          Enter your email and password to sign in.
+          Enter your username and password to login.
         </Text>
 
         <View style={[styles.secondContainer]}>
@@ -84,15 +89,17 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         />
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("SignUp");
+            AuthFunctions.openWebUrl(
+              "https://web.javainstitute.org/web-portal/login/student.jsp"
+            );
           }}
         >
           <Text
             style={[styles.subText, { textAlign: "center", marginTop: 16 }]}
           >
-            Don't have an account?{" "}
-            <Text style={{ color: Colors.PRIMARY_WHITE, fontWeight: "bold" }}>
-              Sign Up
+            Continue on web?{" "}
+            <Text style={{ color: Colors.SUB_1, fontWeight: "bold" }}>
+              Visit web login
             </Text>
           </Text>
         </TouchableOpacity>
@@ -115,11 +122,11 @@ const styles = StyleSheet.create({
   },
   MainText: {
     ...TextStyles.H1,
-    color: Colors.PRIMARY_WHITE,
+    color: Colors.PRIMARY_BLACK,
   },
   subText: {
     ...TextStyles.P,
-    color: Colors.GRAY_300,
+    color: Colors.GRAY_500,
     textAlign: "left",
   },
   secondContainer: {
