@@ -15,7 +15,25 @@ import Colors from "../../styles/Colors";
 interface HomeScreenProps {
   navigation: any;
 }
-
+let dummyData = [
+  {
+    title: "AOOP-III - Advanced Object-Oriented Programming Day 1",
+    venue: "Kandy - Online",
+    lecturer: "Dr Tharaka Sankalpa",
+    date: "10-October-2024",
+    isToday: true,
+    url: "https://www.google.com",
+    time: "10:00 AM - 12:00 PM",
+  },
+  {
+    title: "AOOP-III - Advanced Object-Oriented Programming Day 2",
+    venue: "Kandy - Online",
+    lecturer: "Dr Tharaka Sankalpa",
+    date: "10-October-2024",
+    isToday: true,
+    time: "12:00 PM - 2:00 PM",
+  },
+];
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   // MARK: - Component
   const HeaderView: React.FC = () => {
@@ -53,13 +71,34 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     );
   };
 
+  const AttendanceMarking: React.FC = () => {
+    return (
+      <View style={[styles.lecturesView]}>
+        <Text style={[styles.titleText]}>Mark Attendance</Text>
+        <Text style={[styles.subText]}>
+          No attendance to be marked at the moment
+        </Text>
+      </View>
+    );
+  };
+
   const TodayLectures: React.FC = () => {
     return (
       <View style={[styles.lecturesView]}>
         <Text style={[styles.titleText]}>Today's Lectures</Text>
         {/* <Text style={[styles.subText]}>No Lectures</Text> */}
-        <LectureCard />
-        <LectureCard />
+        {dummyData.map((data, index) => (
+          <LectureCard
+            key={index}
+            title={data.title}
+            venue={data.venue}
+            lecturer={data.lecturer}
+            date={data.date}
+            isToday={data.isToday}
+            url={data.url}
+            time={data.time}
+          />
+        ))}
       </View>
     );
   };
@@ -70,6 +109,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
       <HeaderView />
       <ScrollView contentContainerStyle={[styles.mainContainer]}>
         <UserCard />
+        <AttendanceMarking />
         <TodayLectures />
       </ScrollView>
     </SafeAreaView>

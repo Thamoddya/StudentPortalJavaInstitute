@@ -2,21 +2,55 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TextStyles } from "../../styles/AppStyles";
 import Colors from "../../styles/Colors";
+import ThemedButton from "../buttons/ThemeButton";
 
-const LectureCard = () => {
+interface LectureCardProps {
+  title: string;
+  venue: string;
+  lecturer: string;
+  date: string;
+  isToday: boolean;
+  url?: string;
+  time?: string;
+}
+
+const LectureCard: React.FC<LectureCardProps> = ({
+  title,
+  venue,
+  lecturer,
+  date,
+  isToday,
+  url,
+  time,
+}) => {
   return (
-    <View style={[styles.cardView]}>
+    <View
+      style={[
+        styles.cardView,
+        {
+          borderColor: isToday ? Colors.SUB_1 : Colors.GRAY_300,
+        },
+      ]}
+    >
       <View style={[styles.dateView]}>
-        <Text style={[styles.topDateText]}>10-October-2024</Text>
+        <Text style={[styles.topDateText]}>{isToday ? "Today" : date}</Text>
       </View>
       <Text numberOfLines={2} ellipsizeMode="tail" style={[styles.titleText]}>
-        AOOP-III - Advanced Object-Oriented Programming Day 1
+        {title}
       </Text>
       <View style={[styles.detailContainer]}>
-        <Text style={[styles.venueText]}>Kandy - Online</Text>
-        <Text style={[styles.subText]}>8.30AM - 10.30AM</Text>
+        <Text style={[styles.venueText]}>{venue}</Text>
+        <Text style={[styles.subText]}>{time}</Text>
       </View>
-      <Text style={[styles.lecturerText]}>Dr Tharaka Sankalpa</Text>
+      <Text style={[styles.lecturerText]}>{lecturer}</Text>
+      {url && (
+        <ThemedButton
+          title="Join Lecture"
+          onPress={() => {
+            console.log("Join Lecture");
+          }}
+        />
+      )}
     </View>
   );
 };
@@ -30,7 +64,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 16,
     marginVertical: 14,
-    borderColor: Colors.SUB_1,
     borderWidth: 1,
   },
   titleText: {
