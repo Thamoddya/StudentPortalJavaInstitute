@@ -1,6 +1,7 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { Home2, Profile } from "iconsax-react-native";
+import { Book, Home2, Profile } from "iconsax-react-native";
 import React from "react";
+import ClassScheduleScreen from "../screens/Home/ClassScheduleScreen";
 import HomeScreen from "../screens/Home/HomeScreen";
 import ProfileScreen from "../screens/Home/ProfileScreen";
 import Colors from "../styles/Colors";
@@ -64,6 +65,20 @@ const MainTabNavigator = () => {
           tabBarLabel: "Home",
           tabBarIcon: ({ color, focused }) => (
             <Home2
+              size={24}
+              color={color}
+              variant={focused ? "Bold" : "Outline"}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ClassSchedule"
+        component={ClassScheduleScreen}
+        options={{
+          tabBarLabel: "Lectures",
+          tabBarIcon: ({ color, focused }) => (
+            <Book
               size={24}
               color={color}
               variant={focused ? "Bold" : "Outline"}

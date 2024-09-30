@@ -5,8 +5,11 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
+import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScreenStyles, TextStyles } from "../../styles/AppStyles";
 import Colors from "../../styles/Colors";
 
@@ -15,6 +18,9 @@ interface ProfileScreenProps {
 }
 
 const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
+  let ActionSheetRef = React.useRef<ActionSheetRef>(null);
+  const insets = useSafeAreaInsets();
+
   // MARK: - Component
 
   const HeaderView: React.FC = () => {
@@ -22,6 +28,64 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
       <View style={[styles.headerView]}>
         <Text style={[styles.middleText]}>Student Details</Text>
       </View>
+    );
+  };
+
+  const CustomActionSheet: React.FC = () => {
+    return (
+      <ActionSheet
+        indicatorStyle={{
+          backgroundColor: Colors.GRAY_400,
+          marginTop: 16,
+        }}
+        gestureEnabled={true}
+        safeAreaInsets={insets}
+        drawUnderStatusBar={false}
+        //Top node of the ActionSheet
+        animated={true}
+        closable={true}
+        enableGesturesInScrollView={true}
+        headerAlwaysVisible={true}
+        keyboardHandlerEnabled={true}
+        overdrawEnabled={true}
+        backgroundInteractionEnabled={false}
+        overlayColor={Colors.PRIMARY_WHITE}
+        elevation={0}
+        statusBarTranslucent={true}
+        containerStyle={{
+          backgroundColor: Colors.PRIMARY_WHITE,
+          height: Dimensions.get("window").height / 3,
+          shadowColor: Colors.PRIMARY_BLACK,
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.85,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}
+        ref={ActionSheetRef}
+      >
+        <View style={[styles.transparentActionSheet]}>
+          <Text style={[styles.mainText]}>Sure?</Text>
+          <Text style={[styles.subText]}>
+            Are you sure you want to logout from the application?
+          </Text>
+          <View style={{ flexGrow: 1 }} />
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.PRIMARY_RED,
+              padding: 16,
+              borderRadius: 8,
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Text style={{ color: Colors.PRIMARY_WHITE }}>Logout</Text>
+          </TouchableOpacity>
+          <View style={{ flexGrow: 1 }} />
+        </View>
+      </ActionSheet>
     );
   };
 
@@ -55,10 +119,16 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
             },
           ]}
         ></View>
-        <View style={styles.logoutButton}>
+        <TouchableOpacity
+          onPress={() => {
+            ActionSheetRef.current?.show();
+          }}
+          style={styles.logoutButton}
+        >
           <Text style={{ color: Colors.PRIMARY_WHITE }}>Logout</Text>
-        </View>
+        </TouchableOpacity>
       </View>
+      {<CustomActionSheet />}
     </SafeAreaView>
   );
 };
@@ -143,5 +213,24 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     margin: 16,
     alignItems: "center",
+  },
+  transparentActionSheet: {
+    backgroundColor: Colors.PRIMARY_WHITE,
+    padding: 16,
+    borderRadius: 10,
+    margin: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+  },
+  mainText: {
+    ...TextStyles.H1,
+    color: Colors.PRIMARY_BLACK,
+    textAlign: "center",
+  },
+  subText: {
+    ...TextStyles.H6,
+    color: Colors.GRAY_500,
+    textAlign: "center",
   },
 });
